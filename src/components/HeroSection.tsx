@@ -1,19 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (videoRef.current) {
-        videoRef.current.play();
-      }
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <section className="relative min-h-screen luxury-gradient flex items-center justify-center overflow-hidden">
@@ -88,9 +76,10 @@ const HeroSection = () => {
           <div className="relative flex justify-center">
             <div className="relative rounded-2xl overflow-hidden luxury-shadow w-[270px] h-[480px]">
               <video
-                ref={videoRef}
                 src="/videos/cta-hero-video.MP4"
                 loop
+                autoPlay
+                muted
                 playsInline
                 className="w-full h-full object-cover"
               />
