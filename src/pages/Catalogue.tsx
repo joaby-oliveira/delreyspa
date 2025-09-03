@@ -5,7 +5,7 @@ import ServiceModal from "@/components/ServiceModal";
 import { toast } from "@/components/ui/sonner";
 import { services } from "@/data/services";
 
-export const CataloguePage = () => {
+const CataloguePage = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
