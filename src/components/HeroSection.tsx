@@ -1,7 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState, useRef } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const newMutedState = !isMuted;
+      videoRef.current.muted = newMutedState;
+      setIsMuted(newMutedState);
+    }
+  };
 
   return (
     <section className="relative min-h-screen luxury-gradient flex items-center justify-center overflow-hidden">
@@ -76,6 +88,7 @@ const HeroSection = () => {
           <div className="relative flex justify-center">
             <div className="relative rounded-2xl overflow-hidden luxury-shadow w-[270px] h-[480px]">
               <video
+                ref={videoRef}
                 src="/videos/cta-hero-video.MP4"
                 loop
                 autoPlay
@@ -83,6 +96,14 @@ const HeroSection = () => {
                 playsInline
                 className="w-full h-full object-cover"
               />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleMute}
+                className="absolute bottom-4 right-4 text-white bg-black/30 hover:bg-black/50"
+              >
+                {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+              </Button>
             </div>
           </div>
         </div>
