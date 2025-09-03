@@ -1,8 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { PlayCircle } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.play();
+      }
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="relative min-h-screen luxury-gradient flex items-center justify-center overflow-hidden">
       {/* Background pattern */}
@@ -73,37 +85,16 @@ const HeroSection = () => {
           </div>
           
           {/* Right Content - Video Section */}
-          <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden luxury-shadow">
-              {/* Video Placeholder */}
-              <div className="aspect-video bg-luxury-gray/30 backdrop-blur-sm flex items-center justify-center relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-luxury-gold/20 to-transparent"></div>
-                
-                {/* Video Play Button */}
-                <div className="relative z-10 text-center space-y-4">
-                  <PlayCircle className="w-24 h-24 mx-auto text-primary hover:scale-110 smooth-transition cursor-pointer" />
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-foreground mb-2">
-                      Bem-vindo à experiência premium
-                    </h3>
-                    <p className="text-lg text-muted-foreground">
-                      em estética automotiva a domicílio
-                    </p>
-                    <p className="text-sm text-luxury-gold mt-2 font-medium">
-                      Conheça o Antônio e nossa filosofia de trabalho
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Decorative elements */}
-                <div className="absolute top-4 right-4 w-3 h-3 bg-primary rounded-full animate-pulse-gold"></div>
-                <div className="absolute bottom-4 left-4 w-2 h-2 bg-secondary rounded-full animate-pulse-gold delay-1000"></div>
-              </div>
+          <div className="relative flex justify-center">
+            <div className="relative rounded-2xl overflow-hidden luxury-shadow w-[270px] h-[480px]">
+              <video
+                ref={videoRef}
+                src="/videos/cta-hero-video.MP4"
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
             </div>
-            
-            {/* Floating Elements */}
-            <div className="absolute -top-6 -right-6 w-12 h-12 bg-primary/20 rounded-full animate-float delay-500"></div>
-            <div className="absolute -bottom-6 -left-6 w-8 h-8 bg-secondary/20 rounded-full animate-float delay-1000"></div>
           </div>
         </div>
       </div>
