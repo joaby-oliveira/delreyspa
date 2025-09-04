@@ -58,22 +58,6 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
-            
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="text-center">
-                <div className="text-4xl font-bold gold-gradient bg-clip-text text-transparent mb-2">
-                  500+
-                </div>
-                <p className="text-muted-foreground">Carros atendidos</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold gold-gradient bg-clip-text text-transparent mb-2">
-                  100%
-                </div>
-                <p className="text-muted-foreground">Satisfação garantida</p>
-              </div>
-            </div>
           </div>
           
           {/* Right Content - Features */}
